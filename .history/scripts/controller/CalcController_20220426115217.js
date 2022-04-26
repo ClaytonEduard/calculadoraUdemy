@@ -35,7 +35,6 @@ class CalcController {
 
     addOperation(value) {
         this._operation.push(value)
-        console.log(this._operation)
     }
 
     setError() {
@@ -64,17 +63,17 @@ class CalcController {
                 break;
 
 
-            case '0':
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-                this.addOperation(parseInt(value))
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                this.add
                 break
 
             default:

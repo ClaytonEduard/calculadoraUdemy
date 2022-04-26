@@ -74,7 +74,7 @@ class CalcController {
             case '7':
             case '8':
             case '9':
-                this.addOperation(parseInt(value))
+                this.addOperation(paserInt(value))
                 break
 
             default:
