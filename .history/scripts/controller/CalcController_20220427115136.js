@@ -1,6 +1,5 @@
 class CalcController {
     constructor() {
-        this._audio = new Audio('click.mp3')
         this._audioOnOff = false
         this._lastOperator = ''
         this._lasNumber = ''
@@ -53,38 +52,24 @@ class CalcController {
         this.setLastNumberToDisplay();
         this.pasteFromClipboard()
 
-        document.querySelectorAll('.btn-ac').forEach(btn => {
-            btn.addEventListener('dblclick', e => {
+        document.querySelectorAll('.btn-ac').forEach(btn =>{
+            btn.addEventListener('dblclick', e =>{
                 // audio ligado
                 this.toggleAudio();
             })
         })
     }
 
-    toggleAudio() {
-        // 3  modos de verificacao de uma condicao true ou false 
-        //  this._audioOnOff = (this._audioOnOff) ? false : true
-        this._audioOnOff = !this._audioOnOff
-        /*       if(this._audioOnOff){
-                   this._audioOnOff = false
-               }else{
-                   this._audioOnOff = true
-               }
-       */
-    }
+    toggleAudio(){
 
-    playAudio() {
-        if (this._audioOnOff) {
-            this._audio.currentTime = 0;
-            this._audio.play()
-        }
+        if()
+
     }
 
     //funcao para habilitar o teclado na calc
     initKeyBoard() {
 
         document.addEventListener('keyup', e => {
-            this.playAudio()
             switch (e.key) {
                 case 'Escape':
                     this.clearAll()
@@ -309,7 +294,6 @@ class CalcController {
 
 
     execBtn(value) {
-        this.playAudio()
         switch (value) {
             case 'ac':
                 this.clearAll()

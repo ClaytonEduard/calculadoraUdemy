@@ -84,7 +84,7 @@ class CalcController {
     initKeyBoard() {
 
         document.addEventListener('keyup', e => {
-            this.playAudio()
+           this.playAudio()
             switch (e.key) {
                 case 'Escape':
                     this.clearAll()

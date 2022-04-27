@@ -75,7 +75,7 @@ class CalcController {
 
     playAudio() {
         if (this._audioOnOff) {
-            this._audio.currentTime = 0;
+            this
             this._audio.play()
         }
     }
@@ -84,7 +84,7 @@ class CalcController {
     initKeyBoard() {
 
         document.addEventListener('keyup', e => {
-            this.playAudio()
+           this.playAudio()
             switch (e.key) {
                 case 'Escape':
                     this.clearAll()

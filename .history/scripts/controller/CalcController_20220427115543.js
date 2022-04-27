@@ -1,6 +1,5 @@
 class CalcController {
     constructor() {
-        this._audio = new Audio('click.mp3')
         this._audioOnOff = false
         this._lastOperator = ''
         this._lasNumber = ''
@@ -73,10 +72,9 @@ class CalcController {
        */
     }
 
-    playAudio() {
-        if (this._audioOnOff) {
-            this._audio.currentTime = 0;
-            this._audio.play()
+    playAudio(){
+        if(this._audioOnOff){
+            
         }
     }
 
@@ -84,7 +82,6 @@ class CalcController {
     initKeyBoard() {
 
         document.addEventListener('keyup', e => {
-            this.playAudio()
             switch (e.key) {
                 case 'Escape':
                     this.clearAll()
@@ -309,7 +306,6 @@ class CalcController {
 
 
     execBtn(value) {
-        this.playAudio()
         switch (value) {
             case 'ac':
                 this.clearAll()
