@@ -122,7 +122,6 @@ class CalcController {
 
 
             if (!lastItem) {
-                // ? significa entaão e o  : significa senão
                 lastItem = (isOperator) ? this._lastOperator : this._lasNumber
             }
 

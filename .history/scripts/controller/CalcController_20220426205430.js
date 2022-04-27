@@ -120,12 +120,6 @@ class CalcController {
                 break
             }
 
-
-            if (!lastItem) {
-                // ? significa entaão e o  : significa senão
-                lastItem = (isOperator) ? this._lastOperator : this._lasNumber
-            }
-
         }
 
         return lastItem

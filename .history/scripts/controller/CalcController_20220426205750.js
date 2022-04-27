@@ -122,7 +122,7 @@ class CalcController {
 
 
             if (!lastItem) {
-                // ? significa entaão e o  : significa senão
+                // ? significa enta
                 lastItem = (isOperator) ? this._lastOperator : this._lasNumber
             }
 

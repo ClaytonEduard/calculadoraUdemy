@@ -1,7 +1,6 @@
 class CalcController {
     constructor() {
-        this._lastOperator = ''
-        this._lasNumber = ''
+        this._lastOperat
         // array para guardar na memoria os digitaveis
         this._operation = [];
         this._locale = 'pt-BR'
@@ -72,25 +71,12 @@ class CalcController {
     calc() {
 
         let last = ''
-        this._lastOperator = this.getLastItem()
-
-        if (this._operation.length < 3) {
-            let firstItem = this._operation[0]
-            this._operation = [firstItem, this._lastOperator, this._lasNumber]
-        }
-
-
-
         if (this._operation.length > 3) {
             // pega o ultimo da posicao e coloca na variavel 
             last = this._operation.pop()
-
             //garda o resultado quando clicamos no botao igual =
-            this._lasNumber = this.getResult()
-        } else if (this._operation.length == 3) {
-            this._lasNumber = this.getLastItem(false)
+            let result = this.getResult()
         }
-
         //recebe o resultado do calculo
         let result = this.getResult()
 
@@ -110,33 +96,15 @@ class CalcController {
 
 
     }
-
-
-    getLastItem(isOperator = true) {
-        let lastItem;
+    setLastNumberToDisplay(value) {
+        let lastNumber;
         for (let i = this._operation.length - 1; i >= 0; i--) {
-            if (this.isOperator(this._operation[i]) == isOperator) {
-                lastItem = this._operation[i]
+            //se i não for um operador
+            if (!this.isOperator(this._operation[i])) {
+                lastNumber = this._operation[i]
                 break
             }
-
-
-            if (!lastItem) {
-                // ? significa entaão e o  : significa senão
-                lastItem = (isOperator) ? this._lastOperator : this._lasNumber
-            }
-
         }
-
-        return lastItem
-    }
-
-
-
-
-
-    setLastNumberToDisplay(value) {
-        let lastNumber = this.getLastItem(false)
         //se lastNumber nao tiver nada cola 0
         if (!lastNumber) lastNumber = 0
         //mostrar os dados na tela da calculadora

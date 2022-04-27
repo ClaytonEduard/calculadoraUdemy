@@ -74,13 +74,10 @@ class CalcController {
         let last = ''
         this._lastOperator = this.getLastItem()
 
-        if (this._operation.length < 3) {
-            let firstItem = this._operation[0]
-            this._operation = [firstItem, this._lastOperator, this._lasNumber]
-        }
 
 
 
+        
         if (this._operation.length > 3) {
             // pega o ultimo da posicao e coloca na variavel 
             last = this._operation.pop()
@@ -118,12 +115,6 @@ class CalcController {
             if (this.isOperator(this._operation[i]) == isOperator) {
                 lastItem = this._operation[i]
                 break
-            }
-
-
-            if (!lastItem) {
-                // ? significa entaão e o  : significa senão
-                lastItem = (isOperator) ? this._lastOperator : this._lasNumber
             }
 
         }

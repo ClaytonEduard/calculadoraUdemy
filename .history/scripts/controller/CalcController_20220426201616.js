@@ -1,7 +1,5 @@
 class CalcController {
     constructor() {
-        this._lastOperator = ''
-        this._lasNumber = ''
         // array para guardar na memoria os digitaveis
         this._operation = [];
         this._locale = 'pt-BR'
@@ -20,8 +18,6 @@ class CalcController {
         setInterval(() => {
             this.setDisplayDateTime()
         }, 1000)
-
-        this.setLastNumberToDisplay();
     }
     // criei uma funcao All, pois so exite o addEventListener.
     addEventListenerAll(element, events, fn) {
@@ -32,13 +28,9 @@ class CalcController {
 
     clearAll() {
         this._operation = [];
-        //atualiza o display
-        this.setLastNumberToDisplay();
     }
     clearEntry() {
         this._operation.pop()
-        //atualiza o display
-        this.setLastNumberToDisplay();
     }
 
 
@@ -63,82 +55,32 @@ class CalcController {
             this.calc();
         }
     }
-
-
-    getResult() {
-        return eval(this._operation.join(''))
-    }
-
     calc() {
-
-        let last = ''
-        this._lastOperator = this.getLastItem()
-
-        if (this._operation.length < 3) {
-            let firstItem = this._operation[0]
-            this._operation = [firstItem, this._lastOperator, this._lasNumber]
-        }
+        // pega o ultimo da posicao e coloca na variavel 
+        let last = this._operation.pop()
 
 
+        if(last =="%")
 
-        if (this._operation.length > 3) {
-            // pega o ultimo da posicao e coloca na variavel 
-            last = this._operation.pop()
-
-            //garda o resultado quando clicamos no botao igual =
-            this._lasNumber = this.getResult()
-        } else if (this._operation.length == 3) {
-            this._lasNumber = this.getLastItem(false)
-        }
 
         //recebe o resultado do calculo
-        let result = this.getResult()
-
-        if (last == "%") {
-            // result = result / 100
-            result /= 100
-            //atualiza so o result pq o % ja usamos
-            this._operation = [result]
-        } else {
-
-            //agora passa o calculo e cola o ultimo na segunda posicao
-            this._operation = [result]
-            if (last) this._operation.push(last)
-        }
+        let result = eval(this._operation.join(''))
+        //agora passa o calculo e cola o ultimo na segunda posicao
+        this._operation = [result, last]
         //atualiza o display
         this.setLastNumberToDisplay();
 
 
     }
-
-
-    getLastItem(isOperator = true) {
-        let lastItem;
+    setLastNumberToDisplay(value) {
+        let lastNumber;
         for (let i = this._operation.length - 1; i >= 0; i--) {
-            if (this.isOperator(this._operation[i]) == isOperator) {
-                lastItem = this._operation[i]
+            //se i não for um operador
+            if (!this.isOperator(this._operation[i])) {
+                lastNumber = this._operation[i]
                 break
             }
-
-
-            if (!lastItem) {
-                // ? significa entaão e o  : significa senão
-                lastItem = (isOperator) ? this._lastOperator : this._lasNumber
-            }
-
         }
-
-        return lastItem
-    }
-
-
-
-
-
-    setLastNumberToDisplay(value) {
-        let lastNumber = this.getLastItem(false)
-        //se lastNumber nao tiver nada cola 0
-        if (!lastNumber) lastNumber = 0
         //mostrar os dados na tela da calculadora
         this.displayCalc = lastNumber
 
@@ -206,7 +148,7 @@ class CalcController {
                 this.addOperation('%')
                 break;
             case 'igual':
-                this.calc()
+
                 break;
             case 'ponto':
                 this.addOperation('.')
