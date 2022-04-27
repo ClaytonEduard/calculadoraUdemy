@@ -18,7 +18,8 @@ class CalcController {
         document.addEventListener('paste', e => {
             let text = e.clipboardData.getData('Text')
 
-            this.displayCalc = parseFloat(text)
+            this.displayCalc = pas
+            console.log(text)
         })
     }
 

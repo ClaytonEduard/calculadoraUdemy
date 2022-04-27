@@ -14,11 +14,9 @@ class CalcController {
         this.initKeyBoard()
     }
 
-    pasteFromClipboard() {
-        document.addEventListener('paste', e => {
-            let text = e.clipboardData.getData('Text')
-
-            this.displayCalc = parseFloat(text)
+    pasteFromClipboard(){
+        document.addEventListener('paste', e=>{
+          let   e.clipboardData.getData('Text')
         })
     }
 
@@ -49,7 +47,6 @@ class CalcController {
         }, 1000)
 
         this.setLastNumberToDisplay();
-        this.pasteFromClipboard()
     }
 
     //funcao para habilitar o teclado na calc
@@ -95,7 +92,7 @@ class CalcController {
                 //habilitando o metodo de copiar
                 case 'c':
                     if (e.ctrlKey) this.copyToClipboard();
-                    break
+                        break
 
             }
         })

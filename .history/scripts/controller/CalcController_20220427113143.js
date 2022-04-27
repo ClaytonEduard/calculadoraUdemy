@@ -14,32 +14,6 @@ class CalcController {
         this.initKeyBoard()
     }
 
-    pasteFromClipboard() {
-        document.addEventListener('paste', e => {
-            let text = e.clipboardData.getData('Text')
-
-            this.displayCalc = parseFloat(text)
-        })
-    }
-
-    //metodo para usar o ctrl c e v
-    copyToClipboard() {
-
-        let input = document.createElement('input')
-        input.value = this.displayCalc;
-
-        //colocando o input dentro do select do body, pois não e possivel selecionarmos com o mouse
-
-        document.body.appendChild(input)
-        input.select()
-        document.execCommand('Copy')
-
-        //matando o imput para não aparecer na tela
-        input.remove()
-
-
-    }
-
     initialize() {
 
         this.setDisplayDateTime();
@@ -49,7 +23,6 @@ class CalcController {
         }, 1000)
 
         this.setLastNumberToDisplay();
-        this.pasteFromClipboard()
     }
 
     //funcao para habilitar o teclado na calc
@@ -72,11 +45,11 @@ class CalcController {
 
                     break;
                 case 'Enter':
-                case '=':
+                    case '=':
                     this.calc()
                     break;
                 case '.':
-                case ',':
+                    case ',':
                     this.addDot()
                     break
 
@@ -90,12 +63,12 @@ class CalcController {
                 case '7':
                 case '8':
                 case '9':
-                    this.addOperation(parseInt(e.key))
+                    this.addOperation(parseInt(e))
                     break
-                //habilitando o metodo de copiar
-                case 'c':
-                    if (e.ctrlKey) this.copyToClipboard();
-                    break
+
+                default:
+                    this.setError();
+                    break;
 
             }
         })

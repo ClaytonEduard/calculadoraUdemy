@@ -14,32 +14,6 @@ class CalcController {
         this.initKeyBoard()
     }
 
-    pasteFromClipboard() {
-        document.addEventListener('paste', e => {
-            let text = e.clipboardData.getData('Text')
-
-            this.displayCalc = parseFloat(text)
-        })
-    }
-
-    //metodo para usar o ctrl c e v
-    copyToClipboard() {
-
-        let input = document.createElement('input')
-        input.value = this.displayCalc;
-
-        //colocando o input dentro do select do body, pois não e possivel selecionarmos com o mouse
-
-        document.body.appendChild(input)
-        input.select()
-        document.execCommand('Copy')
-
-        //matando o imput para não aparecer na tela
-        input.remove()
-
-
-    }
-
     initialize() {
 
         this.setDisplayDateTime();
@@ -49,7 +23,6 @@ class CalcController {
         }, 1000)
 
         this.setLastNumberToDisplay();
-        this.pasteFromClipboard()
     }
 
     //funcao para habilitar o teclado na calc
@@ -60,26 +33,31 @@ class CalcController {
                 case 'Escape':
                     this.clearAll()
                     break;
-                case 'Backspace':
+                case 'ce':
                     this.clearEntry()
                     break;
-                case '+':
-                case '-':
-                case '*':
-                case '/':
-                case '%':
-                    this.addOperation(e.key)
-
+                case 'soma':
+                    this.addOperation('+')
                     break;
-                case 'Enter':
-                case '=':
+                case 'subtracao':
+                    this.addOperation('-')
+                    break;
+                case 'divisao':
+                    this.addOperation('/')
+                    break;
+                case 'multiplicacao':
+                    this.addOperation('*')
+                    break;
+                case 'porcento':
+                    this.addOperation('%')
+                    break;
+                case 'igual':
                     this.calc()
                     break;
-                case '.':
-                case ',':
+                case 'ponto':
                     this.addDot()
                     break
-
+    
                 case '0':
                 case '1':
                 case '2':
@@ -90,13 +68,13 @@ class CalcController {
                 case '7':
                 case '8':
                 case '9':
-                    this.addOperation(parseInt(e.key))
+                    this.addOperation(parseInt(value))
                     break
-                //habilitando o metodo de copiar
-                case 'c':
-                    if (e.ctrlKey) this.copyToClipboard();
-                    break
-
+    
+                default:
+                    this.setError();
+                    break;
+    
             }
         })
 

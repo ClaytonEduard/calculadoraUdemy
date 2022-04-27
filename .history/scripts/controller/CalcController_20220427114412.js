@@ -17,8 +17,7 @@ class CalcController {
     pasteFromClipboard() {
         document.addEventListener('paste', e => {
             let text = e.clipboardData.getData('Text')
-
-            this.displayCalc = parseFloat(text)
+            console.log(text)
         })
     }
 
@@ -49,7 +48,7 @@ class CalcController {
         }, 1000)
 
         this.setLastNumberToDisplay();
-        this.pasteFromClipboard()
+        this.
     }
 
     //funcao para habilitar o teclado na calc

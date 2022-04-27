@@ -19,6 +19,7 @@ class CalcController {
             let text = e.clipboardData.getData('Text')
 
             this.displayCalc = parseFloat(text)
+            console.log(text)
         })
     }
 
