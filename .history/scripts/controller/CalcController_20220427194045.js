@@ -179,14 +179,11 @@ class CalcController {
 
 
     getResult() {
-        try {
-            return eval(this._operation.join(''))
-        } catch (e) {
-            setTimeout(() => {
-                this.setError()
-            }, 1)
-
-        }
+      try {
+        return eval(this._operation.join(''))
+      } catch (e) {
+          this.setError()
+      }
     }
 
     calc() {
